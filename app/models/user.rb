@@ -18,4 +18,29 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
+
+  #フォローした、フォローされたの関係
+  # フォローした
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # フォローされた
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+  #一覧画面で使用
+  #自分がフォローした人
+  has_many :followings, through: :relationships, source: :followed
+  #自分のフォロワー
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id)
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
+
 end

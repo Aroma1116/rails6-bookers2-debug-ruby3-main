@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/following'
+  get 'relationships/follower'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root :to =>"homes#top"
@@ -8,6 +10,10 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
   end
-  resources :users, only: [:index,:show,:edit,:update]
+  resources :users, only: [:index,:show,:edit,:update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings', to: 'relationships#followings', as: 'followings'
+    get 'follower', to: 'relationships#follower', as: 'follower'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
