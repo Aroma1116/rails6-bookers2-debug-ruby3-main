@@ -31,5 +31,8 @@
   <% else %>
     <%= link_to 'フォローする', user_relationships_path(user.id), method: :post, class: 'btn btn-success' %>
   <% end %>
+  <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+    <%= link_to 'chatを始める', chat_path(user.id), class: "ml-3" %>
+  <% end %>
   </div>
 <% end %>
