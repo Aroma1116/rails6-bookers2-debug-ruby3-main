@@ -60,11 +60,12 @@ gem 'jquery-rails'
 
 gem 'pry-rails'
 
-gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+# gem 'dotenv-rails'
+# group :production do
+#   gem 'mysql2'
+# end
 
-gem 'net-smtp'
 gem 'net-pop'
 gem 'net-imap'
+gem 'rails-i18n'
+gem 'devise-i18n'

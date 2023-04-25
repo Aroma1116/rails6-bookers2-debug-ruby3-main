@@ -1,6 +1,6 @@
 <h2>Change your password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_with model: @user, url: user_password_path, method: :patch, class: 'registration-main', local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
 
@@ -9,16 +9,22 @@
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em><br />
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    <%= f.password_field :password,autofocus: true, autocomplete: "new-password" , placeholder:"6文字以上の半角英数字" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"同じパスワードを入力して下さい"  %>
   </div>
 
+  <%= f.hidden_field :reset_password_token %>
+
+  <h2 class='form-bottom-text'>
+    よろしければ以下のボタンを押してください
+  </h2>
+
   <div class="actions">
-    <%= f.submit "Change my password" %>
+    <%= f.submit "パスワード変更" %>
   </div>
 <% end %>
 
