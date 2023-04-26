@@ -24,4 +24,13 @@ class Book < ApplicationRecord
       @book = Book.all
     end
   end
+
+  scope :created_today, -> {where(created_at: Time.zone.now.all_day)}
+  scope :created_yesterday, -> {where(created_at: 1.day.ago.all_day)}
+  scope :created_2days, -> {where(created_at: 2.day.ago.all_day)}
+  scope :created_3days, -> {where(created_at: 3.day.ago.all_day)}
+  scope :created_4days, -> {where(created_at: 4.day.ago.all_day)}
+  scope :created_5days, -> {where(created_at: 5.day.ago.all_day)}
+  scope :created_6days, -> {where(created_at: 6.day.ago.all_day)}
+
 end
