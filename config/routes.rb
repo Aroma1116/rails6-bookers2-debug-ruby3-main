@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     get 'search', to: 'users#search'
   end
   get 'search', to: 'searches#search'
-  resources :groups, only: [:new, :create, :edit, :update, :index, :show]
+  resources :groups, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
+    get 'join', to: 'groups#join'
+
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
