@@ -38,6 +38,11 @@
                 <%= link_to "Join this group", group_join_path(@group), class: "btn btn-success" %>
               <% end %>
             </td>
+            <td>
+              <% if @group.owner_id == current_user.id %>
+                <%= link_to "Notice an event", group_new_mail_path(@group), class: "btn btn-info" %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
