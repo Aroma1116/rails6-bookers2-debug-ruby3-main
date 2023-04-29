@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   end
   get 'search/user', to: 'users#search', as: 'searchuser'
   get 'search/book', to: "books#search", as: 'searchbook'
-  get 'search', to: 'searches#search'
+  #get 'search', to: 'searches#search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
