@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+    @params = params[:content]
     @q = User.ransack(params[:q])
-    @user = @q.result(distinct: true)
   end
 
   def edit
@@ -46,7 +46,6 @@ class UsersController < ApplicationController
     @book = Book.new
     @q = User.ransack(search_params)
     @users = @q.result(distinct: true)
-    #@user = User.find_by(name: search_params[:name_cont])
   end
 
 

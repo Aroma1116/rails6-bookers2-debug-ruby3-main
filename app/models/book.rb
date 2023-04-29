@@ -37,4 +37,8 @@ class Book < ApplicationRecord
   scope :created_last_week, -> {where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day)}
 
   acts_as_taggable_on :tags
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["title"]
+  end
 end

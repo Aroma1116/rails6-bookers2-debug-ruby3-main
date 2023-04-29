@@ -23,6 +23,8 @@ class BooksController < ApplicationController
     if params[:tag_name]
       @books = Book.tagged_with("#{params[:tag_name]}")#
     end
+    @params = params[:content]
+    @q = Book.ransack(params[:q])
   end
 
   def create
@@ -55,7 +57,17 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def search
+    @book = Book.new
+    @q = Book.ransack(search_params)
+    @books = @q.result(distinct: true)
+  end
+
   private
+
+  def search_params
+    params.require(:q).permit!
+  end
 
   def book_params
     params.require(:book).permit(:title, :body, :tag_list)
