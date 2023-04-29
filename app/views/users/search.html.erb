@@ -9,8 +9,10 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Users</h2>
-      <%= render 'layouts/search_form' %>
-      <%= render 'index',users: @users %>
+      <% if @q != nil %>
+      <%# byebug %>
+        <%= render 'index',users: @users %>
+      <% end %>
     </div>
   </div>
 </div>

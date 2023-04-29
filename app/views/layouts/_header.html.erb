@@ -14,12 +14,12 @@
             <% end %>
           </li>
           <li>
-            <%=  link_to users_path,class: 'nav-link text-light' do %>
+            <%=  link_to users_path(content: 0),class: 'nav-link text-light' do %>
               <i class="fas fa-users"></i> Users
             <% end %>
           </li>
           <li>
-            <%=  link_to books_path ,class: 'nav-link text-light' do %>
+            <%=  link_to books_path(content: 1) ,class: 'nav-link text-light' do %>
               <i class="fas fa-book-open"></i> Books
             <% end %>
           </li>
@@ -54,8 +54,8 @@
       </div>
     </div>
   </nav>
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-5"><%= render 'searches/search' %></div>
-  </div>
+  <!--<div class="row">-->
+  <!--  <div class="col-4"></div>-->
+  <!--  <div class="col-5"><%#= render 'searches/search' %></div>-->
+  <!--</div>-->
 </header>

@@ -2,15 +2,17 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'info', user: current_user %>
+      <%= render 'users/info', user: current_user %>
 
       <h2 class="mt-3">New book</h2>
       <%= render 'books/form', book: @book %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>Users</h2>
-      <%= render 'layouts/search_form' %>
-      <%= render 'index',users: @users %>
+      <h2>Books</h2>
+      <% if @q != nil %>
+      <%# byebug %>
+        <%= render 'index',books: @books %>
+      <% end %>
     </div>
   </div>
 </div>

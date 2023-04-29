@@ -1,0 +1,17 @@
+<% if @params == "0" %>
+  <%= search_form_for(@q, url: searchuser_path) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.search_field :name_cont, placeholder: 'キーワードから探す' %>
+
+    <%= f.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+<% elsif @params == "1" %>
+  <%= search_form_for(@q, url: searchbook_path) do |f| %>
+
+      <%= f.label :title %>
+      <%= f.search_field :title_cont, placeholder: 'キーワードから探す' %>
+
+    <%= f.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
