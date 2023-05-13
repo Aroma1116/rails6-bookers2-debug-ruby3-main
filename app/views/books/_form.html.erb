@@ -11,6 +11,22 @@
     <%= f.label :tag_list %>
     <%= f.text_field :tag_list, value: book.tag_list.join(','), class: 'form-control' %>
   </div>
+  <div class="form-group" id="star">
+    <%= f.label :star, "Rate" %>
+    <%= f.hidden_field :star, id: :review_star%>
+  </div>
+  <script>
+  // scriptファイルをどのidの部分に配置するかを指定
+    let elem = document.querySelector('#star');
+    let opt = {
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+ 　 　　  　scoreName: 'book[star]',
+        half: false,
+     };
+    raty(elem,opt);
+  </script>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>

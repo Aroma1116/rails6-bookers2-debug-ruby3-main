@@ -15,7 +15,7 @@
           <%= image_tag book.user.get_profile_image, size:'50x50' %>
           <% end %>
         </td>
-        <td><%= link_to book.title,book %></td>
+        <td><%= link_to book.title,book_path(book),data: {"turbolinks" => false} %></td>
         <td><%= book.body %></td>
         <td>
           <%= render 'books/tag_list', tag_list: book.tag_list %>
@@ -25,6 +25,22 @@
         </td>
         <td>
           コメント数:<%= book.book_comments.count %>
+        </td>
+        <td>
+          <div id="star-rate<%= book.id%>"></td>
+            <script>
+            // scriptファイルをどのidの部分に配置するかを指定
+               let eleme = document.querySelector('#star-rate<%= book.id%>');
+               let opte = {
+                 size      : 36,
+                 starOff   : '<%= asset_path('star-off.png') %>',
+                 starOn    : '<%= asset_path('star-on.png') %>',
+                 half      : false,
+                 readOnly: true,
+                 score: <%= book.star %>,
+               };
+               raty(eleme,opte);
+            </script>
         </td>
         <td>
           閲覧数:<%= book.view_counts.count %>

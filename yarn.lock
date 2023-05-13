@@ -2108,14 +2108,7 @@ chalk@^2.0, chalk@^2.0.0, chalk@^2.4.1, chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chart.js@4:
-  version "4.2.1"
-  resolved "https://registry.npmjs.org/chart.js/-/chart.js-4.2.1.tgz"
-  integrity sha512-6YbpQ0nt3NovAgOzbkSSeeAQu/3za1319dPUQTXn9WcOpywM8rGKxJHrhS8V8xEkAlk8YhEfjbuAPfUyp6jIsw==
-  dependencies:
-    "@kurkle/color" "^0.3.0"
-
-chart.js@^4.2.1:
+chart.js@4, chart.js@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-4.2.1.tgz#d2bd5c98e9a0ae35408975b638f40513b067ba1d"
   integrity sha512-6YbpQ0nt3NovAgOzbkSSeeAQu/3za1319dPUQTXn9WcOpywM8rGKxJHrhS8V8xEkAlk8YhEfjbuAPfUyp6jIsw==
