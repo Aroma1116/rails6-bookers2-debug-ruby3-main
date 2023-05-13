@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     get 'follower', to: 'relationships#follower', as: 'follower'
     get 'search', to: 'users#date_search'
   end
+  get 'search', to: 'searches#search'
+  resources :groups, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
+    get 'join', to: 'groups#join'
+    get 'new/mail', to: 'groups#new_mail'
+    get 'send/mail', to: 'groups#send_mail'
+  end
   get 'search/user', to: 'users#search', as: 'searchuser'
   get 'search/book', to: "books#search", as: 'searchbook'
   #get 'search', to: 'searches#search'
