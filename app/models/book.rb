@@ -36,6 +36,10 @@ class Book < ApplicationRecord
   scope :created_this_week, -> {where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day)}
   scope :created_last_week, -> {where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day)}
 
+
+  scope :latest, -> {order(created_at: :desc)}
+  scope :star_count, -> {order(star: :desc)}
+
   acts_as_taggable_on :tags
 
   def self.ransackable_attributes(auth_object = nil)
