@@ -14,6 +14,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+    @params = params[:content]
+    @q = User.ransack(params[:q])
   end
 
   def edit
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def search
+  def date_search
     @user = User.find(params[:user_id])
     @books = @user.books
     @book = Book.new
@@ -40,8 +42,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    @book = Book.new
+    @q = User.ransack(search_params)
+    @users = @q.result(distinct: true)
+  end
+
 
   private
+
+  def search_params
+    params.require(:q).permit!
+  end
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)

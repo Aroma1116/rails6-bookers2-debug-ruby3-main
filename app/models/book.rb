@@ -11,19 +11,19 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @book = Book.where("title LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @book = Book.where("title LIKE?", "#{word}%")
-    elsif search == "backward_match"
-      @book = Book.where("title LIKE?", "%#{word}")
-    elsif search == "partial_match"
-      @book = Book.where("title LIKE?", "%#{word}%")
-    else
-      @book = Book.all
-    end
-  end
+  # def self.looks(search, word)
+  #   if search == "perfect_match"
+  #     @book = Book.where("title LIKE?", "#{word}")
+  #   elsif search == "forward_match"
+  #     @book = Book.where("title LIKE?", "#{word}%")
+  #   elsif search == "backward_match"
+  #     @book = Book.where("title LIKE?", "%#{word}")
+  #   elsif search == "partial_match"
+  #     @book = Book.where("title LIKE?", "%#{word}%")
+  #   else
+  #     @book = Book.all
+  #   end
+  # end
 
 
   scope :created_today, -> {where(created_at: Time.zone.now.all_day)}
@@ -36,4 +36,9 @@ class Book < ApplicationRecord
   scope :created_this_week, -> {where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day)}
   scope :created_last_week, -> {where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day)}
 
+  acts_as_taggable_on :tags
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["title"]
+  end
 end

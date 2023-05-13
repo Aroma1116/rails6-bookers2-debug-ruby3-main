@@ -125,7 +125,9 @@
 
        <div id="search_result">
          <% if @search_book.present? %>
-           <%= render 'search', search_book: @search_book %>
+           <%= render 'date_search', search_book: @search_book %>
+         <% else %>
+           投稿した本はありません。
          <% end %>
        </div>
     </div>

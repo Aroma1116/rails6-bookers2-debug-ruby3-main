@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root :to =>"homes#top"
   get "home/about"=>"homes#about"
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'followings', to: 'relationships#followings', as: 'followings'
     get 'follower', to: 'relationships#follower', as: 'follower'
-    get 'search', to: 'users#search'
+    get 'search', to: 'users#date_search'
   end
   get 'search', to: 'searches#search'
   resources :groups, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
@@ -24,5 +24,8 @@ Rails.application.routes.draw do
     get 'new/mail', to: 'groups#new_mail'
     get 'send/mail', to: 'groups#send_mail'
   end
+  get 'search/user', to: 'users#search', as: 'searchuser'
+  get 'search/book', to: "books#search", as: 'searchbook'
+  #get 'search', to: 'searches#search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
