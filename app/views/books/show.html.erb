@@ -15,16 +15,32 @@
             <%= @book.user.name %>
             <% end %>
           </td>
-          <td><%= link_to @book.title, @book %></td>
+          <td><%= link_to @book.title, @book,data: {"turbolinks" => false} %></td>
           <td><%= @book.body %></td>
           <% if @book.user == current_user %>
-            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to 'Edit', edit_book_path(@book), data: {"turbolinks" => false},class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
           <td id="favorite_buttons_<%= @book.id %>">
             <%= render 'favorites/favorites', book: @book %>
           </td>
           <td>コメント数:<%= @book.book_comments.count %></td>
+          <td>
+            <div id="star-rate<%= @book.id%>"></td>
+            <script>
+            // scriptファイルをどのidの部分に配置するかを指定
+               let eleme = document.querySelector('#star-rate<%= @book.id%>');
+               let opte = {
+                 size      : 36,
+                 starOff   : '<%= asset_path('star-off.png') %>',
+                 starOn    : '<%= asset_path('star-on.png') %>',
+                 half      : false,
+                 readOnly: true,
+                 score: <%= @book.star %>,
+               };
+               raty(eleme,opte);
+            </script>
+          </td>
           <td>閲覧数:<%= @book.view_counts.count %></td>
         </tr>
       </table>
